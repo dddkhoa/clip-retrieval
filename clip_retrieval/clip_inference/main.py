@@ -102,6 +102,8 @@ def main(
     # package arguments to pass on to the distributor
     local_args = dict(locals())
 
+    if isinstance(input_dataset, list):
+        input_dataset = input_dataset[0]
     expanded_dataset = list(braceexpand(input_dataset)) if input_format == "webdataset" else input_dataset
 
     # compute this now for the distributors to use
