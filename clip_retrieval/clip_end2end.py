@@ -3,7 +3,7 @@
 import fire
 
 
-def clip_end2end(url_list, output_folder, run_back=True):
+def clip_end2end(url_list, output_folder, run_back=True, run_download=True, run_inference=True, run_index=True):
     """main entry point of clip end2end"""
 
     import os  # pylint: disable=import-outside-toplevel
@@ -21,31 +21,35 @@ def clip_end2end(url_list, output_folder, run_back=True):
     embeddings_folder = os.path.join(output_folder, "embeddings")
     index_folder = os.path.join(output_folder, "index")
     # img2dataset
-    download(
-        url_list,
-        image_size=256,
-        output_folder=image_folder_name,
-        thread_count=128,
-        processes_count=4,
-        input_format="parquet",
-        output_format="webdataset",
-        url_col="URL",
-        caption_col="TEXT",
-    )
-    # Clip inference
-    input_files = [image_folder_name + "/" + p for p in next(fs.walk(image_folder_name))[2] if p.endswith(".tar")]
-    clip_inference(
-        input_dataset=input_files,
-        output_folder=embeddings_folder,
-        input_format="webdataset",
-        enable_metadata=True,
-        write_batch_size=100000,
-        batch_size=512,
-        cache_path=None,
-    )
-    # Clip index
-    os.mkdir(index_folder)
-    clip_index(embeddings_folder, index_folder=index_folder)
+    if run_download:
+        download(
+            url_list,
+            image_size=256,
+            output_folder=image_folder_name,
+            thread_count=128,
+            processes_count=4,
+            input_format="parquet",
+            output_format="webdataset",
+            url_col="URL",
+            caption_col="TEXT",
+        )
+    if run_inference:
+        # Clip inference
+        input_files = [image_folder_name + "/" + p for p in next(fs.walk(image_folder_name))[2] if p.endswith(".tar")]
+        clip_inference(
+            input_dataset=input_files,
+            output_folder=embeddings_folder,
+            input_format="webdataset",
+            enable_metadata=True,
+            write_batch_size=100000,
+            batch_size=512,
+            cache_path=None,
+        )
+
+    if run_index:
+        # Clip index
+        os.mkdir(index_folder)
+        clip_index(embeddings_folder, index_folder=index_folder)
 
     # Clip back
     indice_path = os.path.join(output_folder, "indices_paths.json")
