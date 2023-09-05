@@ -87,7 +87,7 @@ def main(
     wds_number_file_per_input_file=10000,
     output_partition_count=None,
     wandb_project="clip_retrieval",
-    enable_wandb=False,
+    enable_wandb=True,
     clip_cache_path=None,
     slurm_job_name=None,
     slurm_partition=None,
