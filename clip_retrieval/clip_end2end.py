@@ -56,7 +56,7 @@ def clip_end2end(url_list, output_folder, run_back=True, run_download=True, run_
     with fsspec.open(indice_path, "w") as f:
         f.write('{"example_index": "' + index_folder + '"}')
     if run_back:
-        clip_back(port=1234, indices_paths=indice_path)
+        clip_back(port=1234, indices_paths=indice_path, enable_mclip_option=False, provide_aesthetic_embeddings=False)
 
 
 if __name__ == "__main__":

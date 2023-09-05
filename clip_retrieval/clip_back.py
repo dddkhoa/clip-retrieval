@@ -962,7 +962,7 @@ def clip_back(
     default_backend=None,
     url_column="url",
     enable_mclip_option=True,
-    clip_model="ViT-B/32",
+    clip_model="open_clip:hf-hub:ryanyip7777/pmc_vit_l_14",
     use_jit=True,
     use_arrow=False,
     provide_safety_model=False,

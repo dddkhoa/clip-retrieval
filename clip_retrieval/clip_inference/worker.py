@@ -33,7 +33,7 @@ def worker(
     enable_metadata=False,
     wds_image_key="jpg",
     wds_caption_key="txt",
-    clip_model="ViT-B/32",
+    clip_model="open_clip:hf-hub:ryanyip7777/pmc_vit_l_14",
     mclip_model="sentence-transformers/clip-ViT-B-32-multilingual-v1",
     use_mclip=False,
     use_jit=True,
