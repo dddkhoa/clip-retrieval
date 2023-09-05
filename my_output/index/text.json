@@ -1,0 +1,1 @@
+{"index_key": "Flat", "index_param": "", "index_path": "/root/clip-wandb/my_output/index/text.index", "size in bytes": 1652781, "avg_search_speed_ms": 0.0650459948259447, "99p_search_speed_ms": 0.09398780239280316, "reconstruction error %": 0.0, "nb vectors": 807, "vectors dimension": 512, "compression ratio": 0.9999727731623246}
