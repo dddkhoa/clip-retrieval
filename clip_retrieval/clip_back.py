@@ -961,13 +961,13 @@ def clip_back(
     reorder_metadata_by_ivf_index=False,
     default_backend=None,
     url_column="url",
-    enable_mclip_option=True,
+    enable_mclip_option=False,
     clip_model="open_clip:hf-hub:ryanyip7777/pmc_vit_l_14",
     use_jit=True,
     use_arrow=False,
     provide_safety_model=False,
     provide_violence_detector=False,
-    provide_aesthetic_embeddings=True,
+    provide_aesthetic_embeddings=False,
 ):
     """main entry point of clip back, start the endpoints"""
     print("starting boot of clip back")
