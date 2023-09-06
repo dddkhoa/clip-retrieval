@@ -79,7 +79,7 @@ def main(
     write_batch_size=10**6,
     wds_image_key="jpg",
     wds_caption_key="txt",
-    clip_model="ViT-B/32",
+    clip_model="open_clip:hf-hub:ryanyip7777/pmc_vit_l_14",
     mclip_model="sentence-transformers/clip-ViT-B-32-multilingual-v1",
     use_mclip=False,
     use_jit=False,
