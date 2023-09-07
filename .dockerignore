@@ -142,3 +142,6 @@ ENV/
 .mypy_cache/
 
 static
+
+front/build
+front/node_modules
