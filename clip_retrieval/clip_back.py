@@ -836,24 +836,29 @@ def dict_to_clip_options(d, clip_options):
 @lru_cache(maxsize=None)
 def load_mclip(clip_model):
     """load the mclip model"""
-    from multilingual_clip import pt_multilingual_clip  # pylint: disable=import-outside-toplevel
-    import transformers  # pylint: disable=import-outside-toplevel
-    import torch  # pylint: disable=import-outside-toplevel
+    # from multilingual_clip import pt_multilingual_clip  # pylint: disable=import-outside-toplevel
+    # import transformers  # pylint: disable=import-outside-toplevel
+    # import torch  # pylint: disable=import-outside-toplevel
 
-    if clip_model == "ViT-L/14":
-        model_name = "M-CLIP/XLM-Roberta-Large-Vit-L-14"
-    elif clip_model == "ViT-B/32":
-        model_name = "M-CLIP/XLM-Roberta-Large-Vit-B-32"
-    else:
-        raise ValueError(f"Multi-lingual version of {clip_model} not available.")
+    # if clip_model == "ViT-L/14":
+    #     model_name = "M-CLIP/XLM-Roberta-Large-Vit-L-14"
+    # elif clip_model == "ViT-B/32":
+    #     model_name = "M-CLIP/XLM-Roberta-Large-Vit-B-32"
+    # else:
+    #     raise ValueError(f"Multi-lingual version of {clip_model} not available.")
 
-    model = pt_multilingual_clip.MultilingualCLIP.from_pretrained(model_name)
-    model.eval()
-    tokenizer = transformers.AutoTokenizer.from_pretrained(model_name)
+    # model = pt_multilingual_clip.MultilingualCLIP.from_pretrained(model_name)
+    # model.eval()
+    # tokenizer = transformers.AutoTokenizer.from_pretrained(model_name)
+
+    from sentence_transformers import SentenceTransformer
+
+    model = SentenceTransformer("kaiserrr/pmc-vit-l-14-multilingual")
 
     def encode_texts(text):
-        with torch.no_grad():
-            return model.forward([text], tokenizer)[0].detach().cpu().numpy()
+        # with torch.no_grad():
+        #     return model.forward([text], tokenizer)[0].detach().cpu().numpy()
+        return model.encode(text)
 
     model_txt_mclip = encode_texts
     return model_txt_mclip
