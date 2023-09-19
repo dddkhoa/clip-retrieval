@@ -12,9 +12,11 @@ RUN npm run build
 FROM python:3.10-slim as python-base
 
 WORKDIR /app
+RUN apt-get update && apt-get install -y git
 COPY . /app
 COPY --from=node-base /app/front/node_modules /app/front/node_modules
 COPY --from=node-base /app/front/build /app/front/build
+RUN pip install git+https://github.com/UKPLab/sentence-transformers.git
 RUN pip install -e .
 
 EXPOSE 1234
