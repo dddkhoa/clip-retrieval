@@ -570,7 +570,10 @@ class ClipFront extends LitElement {
       <label>Search with multilingual clip <input type="checkbox" ?checked="${this.useMclip}" @click=${() => { this.useMclip = !this.useMclip }} /></label><br />
         <p>The images are under their own copyright.</p>
      </div>
-
+    <div id="products">
+    ${filteredImages.map(image => this.renderImage(image))}
+    ${this.safeMode && this.images.length !== 0 && filteredImages.length === 0 ? 'Displaying only nice pictures in safe mode!' : ''}
+    </div>
     </div>
     `
   }
