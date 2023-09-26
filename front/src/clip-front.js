@@ -563,21 +563,13 @@ class ClipFront extends LitElement {
       <label>Display captions<input type="checkbox" ?checked="${this.displayCaptions}" @click=${() => { this.displayCaptions = !this.displayCaptions }} /></label><br />
       <label>Display full captions<input type="checkbox" ?checked="${this.displayFullCaptions}" @click=${() => { this.displayFullCaptions = !this.displayFullCaptions }} /></label><br />
       <label>Display similarities<input type="checkbox" ?checked="${this.displaySimilarities}" @click=${() => { this.displaySimilarities = !this.displaySimilarities }} /></label><br />
-      <label>Safe mode<input type="checkbox" ?checked="${this.safeMode}" @click=${() => { this.safeMode = !this.safeMode }} /></label><br />
-      <label>Remove violence<input type="checkbox" ?checked="${this.removeViolence}" @click=${() => { this.removeViolence = !this.removeViolence }} /></label><br />
       <label>Hide duplicate urls<input type="checkbox" ?checked="${this.hideDuplicateUrls}" @click=${() => { this.hideDuplicateUrls = !this.hideDuplicateUrls }} /></label><br />
       <label>Hide (near) duplicate images<input type="checkbox" ?checked="${this.hideDuplicateImages}" @click=${() => { this.hideDuplicateImages = !this.hideDuplicateImages }} /></label><br />
-      <label>Enable aesthetic scoring<input type="checkbox" ?checked="${this.aestheticScore !== ''}" @click=${() => { this.aestheticScore = this.aestheticScore === '' ? '9' : '' }} /></label><br />
-      <label>Aesthetic score <select @input=${(e) => { this.aestheticScore = e.target.value }}>
-        ${(['', ...Array(10).keys()]).map(i => html`<option ?selected="${this.aestheticScore === i.toString()}" value=${i}>${i}</option>`)}</select></label><br />
-      <label>Aesthetic weight<input type="input" value="${this.aestheticWeight}" @input=${(e) => { this.aestheticWeight = e.target.value }} /></label><br />
       <label>Search over <select @input=${e => { this.modality = e.target.value }}>${['image', 'text'].map(modality =>
   html`<option value=${modality} ?selected=${modality === this.modality}>${modality}</option>`)}</select><br />
       <label>Search with multilingual clip <input type="checkbox" ?checked="${this.useMclip}" @click=${() => { this.useMclip = !this.useMclip }} /></label><br />
-        <p>This UI may contain results with nudity and is best used by adults. The images are under their own copyright.</p>
-        <p>Are you seeing near duplicates ? KNN search are good at spotting those, especially so in large datasets.</p>
+        <p>The images are under their own copyright.</p>
      </div>
-
     <div id="products">
     ${filteredImages.map(image => this.renderImage(image))}
     ${this.safeMode && this.images.length !== 0 && filteredImages.length === 0 ? 'Displaying only nice pictures in safe mode!' : ''}

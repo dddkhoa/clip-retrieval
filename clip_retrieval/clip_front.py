@@ -17,6 +17,7 @@ def add_static_endpoints(app, default_backend=None, default_index=None, url_colu
     app.route("/")(static_dir_)
 
     def config_json():
+        request.scheme = 'https'
         back = default_backend if default_backend is not None else request.host_url
         index = default_index if default_index is not None else ""
         config = {"defaultBackend": back, "defaultIndex": index, "urlColumn": url_column}
