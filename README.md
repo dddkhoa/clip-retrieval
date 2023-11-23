@@ -1,3 +1,8 @@
+## Our contribution
+- Bilingual Capability: Enhance the search engine to comprehend text in both English and Vietnamese.
+- Medical Domain: Tailor the search engine to cater specifically to the medical domain
+
+
 # clip-retrieval
 [![pypi](https://img.shields.io/pypi/v/clip-retrieval.svg)](https://pypi.python.org/pypi/clip-retrieval)
 [![NPM version](https://badge.fury.io/js/clip-retrieval-front.svg)](http://badge.fury.io/js/clip-retrieval-front)
